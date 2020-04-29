@@ -1,0 +1,21 @@
+pipelineJob('middleware-deployment-pipeline') {
+    description('Job for building, testing and deploying vacation_planner middleware part')
+
+  	triggers {
+
+       	githubPush()
+    }
+
+  	definition {
+        cpsScm {
+
+                  lightweight(true)
+
+          		  scm {
+                  		github('ugamon/devops-pipelines', 'master')
+                  }
+
+          		  scriptPath('Main')
+               }
+    }
+}

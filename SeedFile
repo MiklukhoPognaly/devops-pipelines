@@ -1,5 +1,5 @@
 pipelineJob('middleware-deployment-pipeline') {
-    description('Job for building, testing and deploying vacation_planner middleware part')
+    description('Pipeline for building, testing and deploying vacation_planner middleware part')
 
   	triggers {
 

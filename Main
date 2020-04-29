@@ -1,0 +1,32 @@
+#!groovy
+
+pipeline {
+    agent any
+
+    stages {
+        stage('Build'){
+            steps {
+                checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/ugamon/vacation_planner.git']]])
+                sh 'pip3 install -r requirements.txt'
+            }
+
+        }
+        stage('Test') {
+            steps {
+                echo 'Testing..'
+                sh '/var/jenkins_home/.local/bin/nosetests --with-xunit'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploy..'
+                ansiblePlaybook inventory: '/var/jenkins_home/ansible/hosts', playbook: '/var/jenkins_home/ansible/play.yml'
+            }
+        }
+    }
+    post {
+        always {
+            junit '**/nosetests.xml'
+        }
+    }
+}

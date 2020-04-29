@@ -18,11 +18,11 @@ pipeline {
             }
         }
 
-        timeout(time:5, unit:'MINUTES') {
-                input message:'Approve deployment?'
-        }
         stage('Deploy') {
             steps {
+                timeout(time:2, unit:'MINUTES'){
+                  input message:'Approve deployment?'
+                }
                 echo 'Deploy..'
                 ansiblePlaybook inventory: '/var/jenkins_home/ansible/hosts', playbook: '/var/jenkins_home/ansible/play.yml'
             }

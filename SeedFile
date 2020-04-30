@@ -3,8 +3,35 @@ folder('production-pipelines') {
     description('Folder for production pipelines')
 }
 
-folder('production-pipelines/test') {
-    description('Test pipelines')
+folder('test-pipelines') {
+    displayName('Development and test')
+    description('Folder for test pipelines')
+}
+
+pipelineJob('test-pipelines/middleware') {
+    description('Pipelines for build, test and deploy vacation_planner middleware part')
+
+     properties {
+        githubProjectUrl('https://github.com/ugamon/vacation_planner')
+    }
+
+  	triggers {
+
+       	githubPush()
+    }
+
+  	definition {
+        cpsScm {
+
+                  lightweight(true)
+
+          		  scm {
+                  		github('ugamon/devops-pipelines', 'master')
+                  }
+
+          		  scriptPath('Main')
+               }
+    }
 }
 
 

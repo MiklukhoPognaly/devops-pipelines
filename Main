@@ -9,19 +9,20 @@ pipeline {
                 checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/ugamon/vacation_planner.git']]])
                 sh 'pip3 install -r requirements.txt'
 
-                withCredentials([string(credentialsId: 'DB_LOGIN', variable: 'DB_LOGIN'), string(credentialsId: 'DB_PASSWORD', variable: 'DB_PASSWORD'), string(credentialsId: 'TRAVELPAYOUTS_TOKEN', variable: 'TTOKEN'), string(credentialsId: 'WEATHERSTACK_TOKEN', variable: 'WTOKEN')]) {
+                withCredentials([string(credentialsId: 'DB_LOGIN', variable: 'DB_LOGIN'), string(credentialsId: 'DB_PASSWORD', variable: 'DB_PASSWORD'), string(credentialsId: 'TRAVELPAYOUTS_TOKEN', variable: 'TTOKEN'), string(credentialsId: 'WEATHERSTACK_TOKEN', variable: 'WTOKEN')])
+              {
                 sh label: '', script: '''
                           FILE=credentials.py
                           if test -f "$FILE"; then
                               rm -r $FILE
                           fi
-
                           echo DB_LOGIN="\'$DB_LOGIN\'" >> $FILE
                           echo DB_PASSWORD="\'$DB_PASSWORD\'" >> $FILE
                           echo TRAVELPAYOUTS_TOKEN="\'$TTOKEN\'" >> $FILE
                           echo WEATHERSTACK_TOKEN="\'$WTOKEN\'" >> $FILE
                           '''
             }
+          }
 
         }
         stage('Test') {

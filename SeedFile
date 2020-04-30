@@ -1,3 +1,13 @@
+folder('production-pipelines') {
+    displayName('Production pipelines')
+    description('Folder for production pipelines')
+}
+
+folder('production-pipelines/test') {
+    description('Test pipelines')
+}
+
+
 pipelineJob('middleware-deployment-pipeline') {
     description('Pipelines for build, test and deploy vacation_planner middleware part')
 

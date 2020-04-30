@@ -11,6 +11,10 @@ folder('production-pipelines/test') {
 pipelineJob('production-pipelines/middleware') {
     description('Pipelines for build, test and deploy vacation_planner middleware part')
 
+     properties {
+        githubProjectUrl('https://github.com/ugamon/vacation_planner')
+    }
+
   	triggers {
 
        	githubPush()

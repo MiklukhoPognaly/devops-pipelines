@@ -8,7 +8,7 @@ folder('production-pipelines/test') {
 }
 
 
-pipelineJob('middleware-deployment-pipeline') {
+pipelineJob('production-pipelines/middleware') {
     description('Pipelines for build, test and deploy vacation_planner middleware part')
 
   	triggers {

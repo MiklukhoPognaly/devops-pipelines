@@ -6,7 +6,7 @@ pipeline {
     stages {
         stage('Build'){
             steps {
-                checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/ugamon/vacation_planner.git']]])
+                checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/MiklukhoPognaly/vacation-planner-middleware.git']]])
                 sh 'pip3 install -r requirements.txt'
 
                 withCredentials([string(credentialsId: 'DB_LOGIN', variable: 'DB_LOGIN'), string(credentialsId: 'DB_PASSWORD', variable: 'DB_PASSWORD'), string(credentialsId: 'TRAVELPAYOUTS_TOKEN', variable: 'TTOKEN'), string(credentialsId: 'WEATHERSTACK_TOKEN', variable: 'WTOKEN')])

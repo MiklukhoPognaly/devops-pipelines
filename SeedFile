@@ -61,7 +61,7 @@ pipelineJob('production-pipelines/middleware') {
     }
 }
 
-pipelineJob('production-pipelines/frontend') {
+pipelineJob('production-pipelines/frontend-build') {
     description('Pipelines for build, test and deploy vacation_planner frontend part')
 
      properties {
@@ -83,6 +83,32 @@ pipelineJob('production-pipelines/frontend') {
                   }
 
           		  scriptPath('frontend')
+               }
+    }
+}
+
+pipelineJob('production-pipelines/frontend-deploy') {
+    description('Pipelines for build, test and deploy vacation_planner frontend part')
+
+     properties {
+        githubProjectUrl('https://github.com/MiklukhoPognaly/vacation-planner-frontend')
+    }
+
+  	triggers {
+
+       	githubPush()
+    }
+
+  	definition {
+        cpsScm {
+
+                  lightweight(true)
+
+          		  scm {
+                  		github('MiklukhoPognaly/devops-pipelines', 'master')
+                  }
+
+          		  scriptPath('frontend-deploy')
                }
     }
 }

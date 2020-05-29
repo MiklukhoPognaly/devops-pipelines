@@ -11,4 +11,10 @@ pipeline {
           }
         }
      }
+
+     post {
+        success {
+            build 'frontend-deploy'
+        }
+    }
 }

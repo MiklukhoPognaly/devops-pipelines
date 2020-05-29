@@ -5,12 +5,10 @@ pipeline {
     stages {
       stage('Copy Archive') {
            steps {
-               script {
-                  step ([$class: 'CopyArtifact',
+               step ([$class: 'CopyArtifact',
                       projectName: 'frontend-build',
-                      filter: "*.zip"]);
-              }
-          }
-      }
-    }
+                      filter: "*.zip"])
+                }
+            }
+        }
 }

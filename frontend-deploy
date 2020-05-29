@@ -5,10 +5,7 @@ pipeline {
     stages {
       stage('Copy Archive') {
            steps {
-               step ([$class: 'CopyArtifact',
-                      projectName: 'frontend-build',
-                      filter: "*.zip"])
-                }
+               copyArtifacts filter: '*.zip', fingerprintArtifacts: true, projectName: 'frontend-build', selector: lastSuccessful()
             }
         }
 }

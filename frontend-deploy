@@ -2,14 +2,15 @@
 
 pipeline {
     agent any
-
-    stage('Copy Archive') {
-         steps {
-             script {
-                step ([$class: 'CopyArtifact',
-                    projectName: 'frontend-build',
-                    filter: "*.zip"]);
-            }
-        }
+    stages {
+      stage('Copy Archive') {
+           steps {
+               script {
+                  step ([$class: 'CopyArtifact',
+                      projectName: 'frontend-build',
+                      filter: "*.zip"]);
+              }
+          }
+      }
     }
 }

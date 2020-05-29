@@ -8,4 +8,5 @@ pipeline {
                copyArtifacts filter: '*.zip', fingerprintArtifacts: true, projectName: 'frontend-build', selector: lastSuccessful()
             }
         }
+    }
 }

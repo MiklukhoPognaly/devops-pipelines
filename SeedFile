@@ -82,7 +82,7 @@ pipelineJob('production-pipelines/frontend-build') {
                   		github('MiklukhoPognaly/devops-pipelines', 'master')
                   }
 
-          		  scriptPath('frontend')
+          		  scriptPath('frontend-build')
                }
     }
 }

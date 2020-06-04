@@ -1,6 +1,6 @@
 # file: production
 [webservers]
-ip-10-0-0-16.ap-south-1.compute.internal ansible_ssh_user=ec2_user
+10.0.0.16 ansible_ssh_user=ec2_user
 
 [middleware]
 ec2-13-233-15-65.ap-south-1.compute.amazonaws.com ansible_ssh_user=ec2_user

@@ -9,7 +9,16 @@ pipeline {
                 checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/MiklukhoPognaly/vacation-planner-frontend.git']]])
                 archiveArtifacts artifacts: '**/*', followSymlinks: false
           }
+         }
+        stage('Archive'){
+
+            steps {
+                sh label: '', script: '''
+                          tar -czvf mickluha-webserver.zip $WORKSPACE/mickluha-webserver
+                          '''
+            }
         }
+
      }
 
      post {
